@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TodoAPP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <style>
+    body{
+      background-color: #cce3de;
+      
+    }
+    .mb{
+      margin-top: 100px;
+    }
+    .d-flex{
+      height: 20vh;
+      width: 100%;
+
+    }
+    .container-fluid{
+      
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .btn a{
+      text-decoration: none;
+      color: white;
+    }
+    .h{
+      margin-top: 20rem;
+  }
+  </style>
+  
+  </head>
+  <body>
+    <!-- As a link -->
+<nav class="navbar bg-light">
+  <div class="container-fluid right">
+    <a class="navbar-brand" href="#">Todo APP</a>
+  </div>
+</nav>
+
+
+{% if user.is_authenticated %}
+<div class="container-fluid">
+  <form method="POST" class="col g-6 ">
+    {% csrf_token %}
+    <div class="col-md-6 mb">
+        <label for="validationCustom01" class="form-label">Auther</label><br>
+        {{form_note.auth}}
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+    </div>
+        <div class="col-md-6">
+            <label for="validationCustom01" class="form-label">Note Text</label><br>
+            {{form_note.text}}
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+        </div>
+       
+        <br>
+    <button class="btn btn-success" type="submit">Add Note</button>
+  </form>
+</div>
+{% else %}
+<div class="container-fluid">
+  <button class="btn btn-success h" ><a href="{% url 'login' %}">Login</a></button>
+</div>
+{% endif %}
+
+
+</nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
